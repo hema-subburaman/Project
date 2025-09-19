@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.user-selection h1 {
+  color: #fff;
+  font-size: 32px;
+  margin-bottom: 40px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.farmer {
+  background: #7ed957;
+}
+
+.student {
+  background: #57c7d9;
+}
+
+.general {
+  background: #f7c02a;
+  color: #333;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
