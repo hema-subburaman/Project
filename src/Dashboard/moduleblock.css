@@ -1,0 +1,49 @@
+.module-block {
+  background: #f8fafd;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  padding: 20px 17px 11px 17px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(215, 226, 255, 0.1);
+}
+
+.module-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #181c22;
+}
+
+.module-details {
+  color: #6a6f77;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
+.progress-percent {
+  position: absolute;
+  right: 24px;
+  top: 19px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 9px;
+  padding: 2px 13px;
+}
+
+.continue-btn {
+  margin-top: 14px;
+  width: 100%;
+  background: #23262f;
+  color: #fbfbfa;
+  font-weight: 600;
+  border: none;
+  border-radius: 9px;
+  padding: 9px 0;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.continue-btn:hover {
+  background: #1463ad;
+}
