@@ -63,3 +63,45 @@ p {
   font-size: 14px;
   color: #555;
 }
+
+@media (max-width: 480px) {
+  .container {
+    width: 95vw;
+    margin: 32px auto;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+  button {
+    font-size: 1rem;
+    padding: 11px;
+  }
+}
+
+/* Medium phones and small tablets (481px to 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .container {
+    width: 90vw;
+    margin: 36px auto;
+    padding: 22px;
+    border-radius: 14px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 1rem;
+    padding: 11px 14px;
+  }
+  button {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}
+
+/* For medium screens (phones and small tablets, 481px–767px) */

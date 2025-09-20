@@ -50,7 +50,7 @@ const CreateAccount = () => {
         <input type="password" id="confirm" placeholder="Confirm Password" value={formData.confirm} onChange={handleChange} required />
         <button type="submit">Create Account</button>
         <p style={{ color: messageColor }}>{message}</p>
-        <p>Already have an account? <Link to="/">Sign In</Link></p>
+        <p>Already have an account? <Link to="/loginpage">Sign In</Link></p>
       </form>
     </div>
   );

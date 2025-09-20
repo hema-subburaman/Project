@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Getstarted.css';
 
+
+
 const Getstarted = () => {
    const navigate = useNavigate();
   const handleClick = () => {
