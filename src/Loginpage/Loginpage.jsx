@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Loginpage.css';
+import backgrounImage from '../assets/tractor.jpg';
 
-const Login = () => {
+const Loginpage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -34,12 +35,14 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
+    <div className="login-page">
+      <div className="login-container">
       <h2>🔑 Login</h2>
       <form onSubmit={handleLogin}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Username/email"
+          className="input-box"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -47,16 +50,18 @@ const Login = () => {
         <input
           type="password"
           placeholder="Password"
+          className="input-box"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="btn">Login</button>
       </form>
       <p id="message" style={{ color: messageColor }}>{message}</p>
-      <p>Don't have an account? <Link to="/createaccount">Create Account</Link></p>
+      <p className="signup-text">Don't have an account? <Link to="/createaccount">Create Account</Link></p>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default Loginpage;

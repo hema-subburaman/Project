@@ -1,16 +1,18 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Loginpage from './Loginpage';
-import CreateAccount from './CreateAccount';
-import UserSelection from './UserSelection';
-import Farmer from './Farmer';
-import Student from './Student';
-import General from './General';
+import Getstarted from './Getstarted/Getstarted';
+import Loginpage from './Loginpage/Loginpage';
+import CreateAccount from './Createaccount/CreateAccount';
+import UserSelection from './Userselection/UserSelection';
+import Farmer from './Farmar/Farmer';
+import Student from './Student/Student';
+import General from './General/General';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Getstarted />} />
+        <Route path="/loginpage" element={<Loginpage />} />
         <Route path="/createaccount" element={<CreateAccount />} />
         <Route path="/user-selection" element={<UserSelection />} />
         <Route path="/farmer" element ={<Farmer />} />
