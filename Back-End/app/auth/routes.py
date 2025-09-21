@@ -1,35 +1,46 @@
 from flask import Blueprint, request, jsonify
-from app.extensions import db
-from app.models import User
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
+from app.models import db, User
 from flask_jwt_extended import create_access_token
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("/register", methods=["POST"])
-def register():
-    data = request.get_json() or {}
-    username = data.get("username")
-    email = data.get("email")
-    password = data.get("password")
-    if not (username and email and password):
-        return jsonify({"msg":"username, email and password required"}), 400
+@auth_bp.route("/signup", methods=["POST"])
+def signup():
+    data = request.get_json()
+    if not data.get("email") or not data.get("password"):
+        return jsonify({"error": "Missing email or password"}), 400
 
-    if User.query.filter((User.username==username) | (User.email==email)).first():
-        return jsonify({"msg":"user already exists"}), 400
+    if User.query.filter_by(email=data["email"]).first():
+        return jsonify({"error": "User already exists"}), 400
 
-    user = User(username=username, email=email)
-    user.set_password(password)
-    db.session.add(user)
+    hashed_pw = generate_password_hash(data["password"])
+    new_user = User(username=data.get("name"), email=data["email"], password_hash=hashed_pw)
+    db.session.add(new_user)
     db.session.commit()
-    return jsonify({"msg":"user created"}), 201
+    return jsonify({"message": "User created successfully"}), 201
+
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
-    data = request.get_json() or {}
-    email = data.get("email")
-    password = data.get("password")
-    user = User.query.filter_by(email=email).first()
-    if not user or not user.check_password(password):
-        return jsonify({"msg":"bad credentials"}), 401
-    token = create_access_token(identity=user.id)
-    return jsonify({"access_token": token, "user":{"id":user.id, "username": user.username}})
+    data = request.get_json()
+    user = User.query.filter_by(email=data["email"]).first()
+    if not user or not check_password_hash(user.password_hash, data["password"]):
+        return jsonify({"error": "Invalid credentials"}), 401
+
+    token = create_access_token(identity=str(user.id))
+    return jsonify({"access_token": token}), 200
+
+@auth_bp.route("/profile", methods=["GET"])
+@jwt_required()  # <-- user must send valid token
+def profile():
+    user_id = get_jwt_identity()  # retrieve user id from token
+    # fetch user info from DB
+    from app.models import User
+    user = User.query.get(int(user_id))
+    return jsonify({
+        "id": user.id,
+        "username": user.username,
+        "email": user.email
+    })

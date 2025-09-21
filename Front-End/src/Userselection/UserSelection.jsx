@@ -13,9 +13,9 @@ const UserSelection = () => {
     <div className="user-selection">
       <h1>🌱 Sustainable Farm Quest</h1>
       <div className="buttons">
-        <button className="farmer" onClick={() => goTo('/farmer')}>👩‍🌾 Farmer</button>
-        <button className="student" onClick={() => goTo('/student')}>🎓 Student</button>
-        <button className="general" onClick={() => goTo('/general')}>👤 General User</button>
+        <button className="farmer" onClick={() => goTo('/farmerinformation')}>👩‍🌾 Farmer</button>
+        <button className="student" onClick={() => goTo('/studentinformation')}>🎓 Student</button>
+        <button className="general" onClick={() => goTo('/generalinformation')}>👤 General User</button>
       </div>
     </div>
   );

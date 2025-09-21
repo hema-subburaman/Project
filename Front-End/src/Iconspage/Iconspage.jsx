@@ -1,6 +1,9 @@
 import React from "react";
 import "./iconspage.css";
 
+// Use your attached fertilizer image
+import fertilizerImage from "/fertilizer.jpg"; // Adjust path if needed
+
 const Iconspage = () => {
   const openApp = (appName) => {
     alert(`${appName} app clicked!`);
@@ -18,7 +21,7 @@ const Iconspage = () => {
 
       <div className="app-icon" onClick={() => openApp("fertilizer")}>
         <img
-          src="https://img.icons8.com/ios-filled/100/000000/fertilizer.png"
+          src={fertilizerImage}
           alt="Fertilizer"
         />
         <span>Fertilizer</span>

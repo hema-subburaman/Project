@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import './Farmer.css';
 
 const Farmer = () => {
+  const navigate = useNavigate();
   const handleChallenge = () => {
-    alert('Start Challenge: Water Management 🌊');
+    alert('Start Challenge: Agriculture based Questions 🌊');
+    navigate("/quiz"); 
   };
 
   return (

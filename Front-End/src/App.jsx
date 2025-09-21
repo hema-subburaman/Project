@@ -7,6 +7,10 @@ import Farmer from './Farmar/Farmer';
 import Student from './Student/Student';
 import General from './General/General';
 import Iconspage from './Iconspage/Iconspage';
+import FarmerInformation from './Farmar/FarmerInformation';
+import StudentInformation from './STudent/StudentInformation';
+import GeneralInformation from './General/GeneralInformation';
+import Quiz from './Quiz/Quiz';
 
 const App = () => {
   return (
@@ -20,6 +24,10 @@ const App = () => {
         <Route path="/student" element ={<Student />} />
         <Route path ="/general" element ={<General />} />
         <Route path ="/iconspage" element ={<Iconspage />} />
+        <Route path = "/farmerinformation" element = {<FarmerInformation />} />
+        <Route path = "/studentinformation" element = {<StudentInformation />} />
+        <Route path = "/generalinformation" element = {<GeneralInformation />} />
+        <Route path = "/quiz" element = {<Quiz />} />
       </Routes>
     </BrowserRouter>
   );
