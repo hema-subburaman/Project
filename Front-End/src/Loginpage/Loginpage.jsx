@@ -14,30 +14,33 @@ const Loginpage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        // backend expects email + password
-        body: JSON.stringify({
-          email: usernameOrEmail,  
-          password,
-        }),
+        body: JSON.stringify({ email: usernameOrEmail, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessageColor("green");
-        setMessage("✅ Login successful!");
-
-        // Save the token in localStorage for authentication
         localStorage.setItem("token", data.access_token);
 
-        setTimeout(() => {
-          navigate("/user-selection"); // redirect to next page
-        }, 1500);
+        // Fetch user info
+        const profileRes = await fetch("http://localhost:5000/api/auth/profile", {
+          headers: { Authorization: `Bearer ${data.access_token}` },
+        });
+        const profileData = await profileRes.json();
+        localStorage.setItem("user_id", profileData.id);
+
+        localStorage.setItem("user", JSON.stringify(profileData));
+
+        if(profileData.role=="farmer"){
+          navigate("/iconspage")
+        }else{
+          navigate("/user-selection");
+        }
       } else {
         setMessageColor("red");
         setMessage(data.error || "❌ Login failed!");

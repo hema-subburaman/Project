@@ -7,6 +7,7 @@ const FarmerInformation = () => {
   const [messageColor, setMessageColor] = useState(""); // For red/green color
   const navigate = useNavigate();
   const [output, setOutput] = useState("");
+  const [userId, setUserId] = useState(null);
   const [form, setForm] = useState({
     name: "",
     gender: "",
@@ -18,8 +19,19 @@ const FarmerInformation = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.id) {
+      alert("User not logged in");
+      navigate("/login");
+      return;
+    }
+
+    // Attach user_id to form data
+    const payload = { ...form, user_id: user.id };
+
     try {
       const response = await fetch(
         "http://localhost:5000/api/farmer/addfarmerdetails",
@@ -28,22 +40,19 @@ const FarmerInformation = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         }
       );
 
       const data = await response.json();
 
       if (response.ok) {
-        // ✅ Success: green message
         setMessageColor("green");
-        alert("Farmer Added Successfully!")
-        navigate("/farmer"); // optional redirect
+        navigate("/iconspage");
       } else {
-        // ❌ Error: red message
         setMessageColor("red");
         alert(data.message || "Farmer already exists!");
-        navigate("/farmer"); // still go to next page
+        navigate("/iconspage");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -51,6 +60,7 @@ const FarmerInformation = () => {
       setMessage("Server error. Please try again.");
     }
   };
+
 
 
   return (

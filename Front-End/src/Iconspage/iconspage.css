@@ -1,87 +1,78 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #dff1d8, #a8e6cf);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.app-container {
-  display: grid;
-  grid-template-columns: repeat(2, 120px);
-  grid-gap: 20px;
-  justify-content: center;
-  align-items: center;
-  background: none; /* Remove picture background */
-}
-
-.app-icon {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.2s;
+.iconspage-wrapper {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
   text-align: center;
 }
 
-.app-icon:hover {
-  transform: scale(1.05);
+/* Grid for icons: horizontal on desktop, vertical on mobile */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 120px); /* force 4 icons in a row on large screens */
+  gap: 30px;
+  justify-content: center; /* center horizontally */
+  margin-bottom: 30px;
 }
 
-.app-icon img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 8px;
+.app-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.app-icon span {
-  font-size: 14px;
+.app-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.app-card span {
   font-weight: bold;
-  color: #333;
+  color: #34495e;
+  font-size: 14px;
 }
 
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-  .app-container {
-    grid-template-columns: repeat(2, 100px);
-    grid-gap: 15px;
-  }
-  .app-icon {
-    width: 100px;
-    height: 100px;
-  }
-  .app-icon img {
-    width: 40px;
-    height: 40px;
-  }
-  .app-icon span {
-    font-size: 12px;
-  }
+/* Hover effect for desktop */
+.app-card:hover {
+  transform: translateY(-5px);
 }
 
-@media (max-width: 480px) {
-  .app-container {
-    grid-template-columns: repeat(2, 80px);
-    grid-gap: 10px;
+.app-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Logout button below icons */
+.logout-button {
+  padding: 12px 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .apps-grid {
+    grid-template-columns: 1fr; /* stack vertically */
+    gap: 20px;
   }
-  .app-icon {
-    width: 80px;
-    height: 80px;
+
+  .app-card img {
+    width: 70px;
+    height: 70px;
   }
-  .app-icon img {
-    width: 30px;
-    height: 30px;
-  }
-  .app-icon span {
-    font-size: 11px;
+
+  .logout-button {
+    width: 100%;
+    font-size: 16px;
   }
 }

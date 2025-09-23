@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Quiz.css";
+import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
   const [level, setLevel] = useState(1);
@@ -8,6 +9,7 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
   const [showResult, setShowResult] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/quiz/questions/${level}`)
@@ -19,11 +21,6 @@ const Quiz = () => {
         setShowResult(false);
       });
   }, [level]);
-
-  const handleEndQuiz = () => {
-    // navigate to farmer page
-    navigate("/farmer");
-  };
 
   const handleAnswer = async (opt) => {
     setSelectedOption(opt);
@@ -66,6 +63,12 @@ const Quiz = () => {
         <p>
           Your Score: <strong>{score}/{questions.length * 3}</strong>
         </p>
+        <button 
+          className="btn-go-home" 
+          onClick={() => navigate("/iconspage")} // go to Iconspage
+        >
+          Go to Home
+        </button>
       </div>
     );
 
@@ -100,7 +103,6 @@ const Quiz = () => {
       </div>
       <p className="score">Score: {score}</p>
     </div>
-    <button onClick={handleEndQuiz}>End the Quiz</button>
     </div>
   );
 };
