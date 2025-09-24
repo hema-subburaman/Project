@@ -48,10 +48,11 @@ const FarmerInformation = () => {
 
       if (response.ok) {
         setMessageColor("green");
+        setMessage(data.message || "Farmer Details Added");
         navigate("/iconspage");
       } else {
         setMessageColor("red");
-        alert(data.message || "Farmer already exists!");
+        setMessage(data.message || "Farmer already exists!");
         navigate("/iconspage");
       }
     } catch (error) {

@@ -36,7 +36,7 @@ const Loginpage = () => {
 
         localStorage.setItem("user", JSON.stringify(profileData));
 
-        if(profileData.role=="farmer"){
+        if (profileData.role === "farmer" || profileData.role === "student" || profileData.role === "generaluser"){
           navigate("/iconspage")
         }else{
           navigate("/user-selection");

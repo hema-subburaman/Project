@@ -7,11 +7,12 @@ const GeneralInformation = () => {
   const [messageColor, setMessageColor] = useState(""); // For red/green color
   const navigate = useNavigate();
   const [output, setOutput] = useState("");
+  const [userId, setUserId] = useState(null);
   const [form, setForm] = useState({
     name: "",
     gender: "",
     age: "",
-    is_gardeneing: "",
+    is_gardening: "",
   });
 
   const handleChange = (e) => {
@@ -20,6 +21,16 @@ const GeneralInformation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.id) {
+      alert("User not logged in");
+      navigate("/login");
+      return;
+    }
+
+    // Attach user_id to form data
+    const payload = { ...form, user_id: user.id };
     try {
       const response = await fetch(
         "http://localhost:5000/api/general/addgeneraluserdetails",
@@ -28,7 +39,7 @@ const GeneralInformation = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -37,12 +48,12 @@ const GeneralInformation = () => {
       if (response.ok) {
         // ✅ Success: green message
         setMessageColor("green");
-        alert("General User Added Successfully!")
-        navigate("/general"); // optional redirect
+        setMessage(data.message || "General User Details Added");
+        navigate("/iconspage"); // optional redirect
       } else {
         // ❌ Error: red message
         setMessageColor("red");
-        setMessage(data.message || "Something went wrong");
+        setMessage(data.message || "General User already exists!");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -100,8 +111,8 @@ const GeneralInformation = () => {
         <div className="question">
           <label htmlFor="general">Do you intresting in gardening</label>
           <select
-            id="is_gardeneing"
-            name="is_gardeneing"
+            id="is_gardening"
+            name="is_gardening"
             required
             value={form.is_gardening}
             onChange={handleChange}

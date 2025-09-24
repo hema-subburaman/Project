@@ -56,6 +56,16 @@ class Student(db.Model):
 
     def __repr__(self):
         return f"<Student {self.name}>"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "name": self.name,
+            "gender": self.gender,
+            "age": self.age,
+            "profession": self.profession,
+        }
 
 # ================= General User Model =================
 class GeneralUser(db.Model):
@@ -70,6 +80,16 @@ class GeneralUser(db.Model):
 
     def __repr__(self):
         return f"<GeneralUser {self.name}>"
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "name": self.name,
+            "gender": self.gender,
+            "age": self.age,
+            "is_gardening": self.is_gardening,
+        }
 
 # ================= Quiz Model =================
 class Quiz(db.Model):

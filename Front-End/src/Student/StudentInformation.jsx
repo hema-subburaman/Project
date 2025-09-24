@@ -7,6 +7,7 @@ const StudentInformation = () => {
   const [messageColor, setMessageColor] = useState(""); // For red/green color
   const navigate = useNavigate();
   const [output, setOutput] = useState("");
+  const [userId, setUserId] = useState(null);
   const [form, setForm] = useState({
     name: "",
     gender: "",
@@ -20,6 +21,16 @@ const StudentInformation = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user || !user.id) {
+      alert("User not logged in");
+      navigate("/login");
+      return;
+    }
+
+    // Attach user_id to form data
+    const payload = { ...form, user_id: user.id };
     try {
       const response = await fetch(
         "http://localhost:5000/api/student/addstudentdetails",
@@ -28,7 +39,7 @@ const StudentInformation = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(form),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -37,12 +48,12 @@ const StudentInformation = () => {
       if (response.ok) {
         // ✅ Success: green message
         setMessageColor("green");
-        alert('Student added successfully!')
-        navigate("/student"); // optional redirect
+        setMessage(data.message || "Student Details Added");
+        navigate("/iconspage"); // optional redirect
       } else {
         // ❌ Error: red message
         setMessageColor("red");
-        setMessage(data.message || "Something went wrong");
+        setMessage(data.message || "Student already exists!");
       }
     } catch (error) {
       console.error("Error:", error);

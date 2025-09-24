@@ -34,7 +34,6 @@ def add_farmer():
     if user:
         user.role = "farmer"
         user.has_details = True
-
     db.session.commit()
 
     return jsonify({
