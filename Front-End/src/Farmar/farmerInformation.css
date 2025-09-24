@@ -1,3 +1,4 @@
+/* Default (large screens, desktops) */
 body {
   margin: 0;
   padding: 0;
@@ -8,6 +9,8 @@ body {
   align-items: center;
   height: 100vh;
 }
+
+/* Form Container */
 .form-container {
   background: #ffffff;
   border-radius: 16px;
@@ -17,17 +20,20 @@ body {
   width: 100%;
   margin: auto;
 }
+
 form .question {
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
 }
+
 form label {
   font-size: 17px;
   margin-bottom: 6px;
   font-weight: bold;
   color: #333;
 }
+
 form input, form select {
   padding: 9px;
   border-radius: 9px;
@@ -37,6 +43,7 @@ form input, form select {
   outline: none;
   margin-bottom: 3px;
 }
+
 form button {
   width: 100%;
   padding: 11px;
@@ -49,38 +56,68 @@ form button {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 form button:hover {
   background: #101010;
 }
+
 #output {
   margin-top: 20px;
   font-size: 16px;
   color: #212121;
 }
+
 /* Responsive Design */
+
+/* Small devices (phones, portrait < 600px) */
 @media (max-width: 600px) {
   .form-container {
-    padding: 18px 10px;
-    max-width: 98vw;
+    padding: 18px 12px;
+    max-width: 95vw;
   }
   form label, form input, form select, form button {
     font-size: 14px;
   }
+  form button {
+    padding: 10px;
+    font-size: 15px;
+  }
 }
 
-
-select {
-  color: #b3aead; /* Use light grey to match input placeholder */
+/* Medium devices (tablets, 601px – 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .form-container {
+    max-width: 500px;
+    padding: 28px 20px;
+  }
+  form label {
+    font-size: 15px;
+  }
+  form input, form select {
+    font-size: 15px;
+  }
 }
 
-/* Ensures text color changes to black when an actual option is selected */
-select option {
-  color: #000;
+/* Large devices (small laptops, 901px – 1200px) */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .form-container {
+    max-width: 600px;
+    padding: 32px 28px;
+  }
+  form label {
+    font-size: 16px;
+  }
+  form input, form select {
+    font-size: 16px;
+  }
 }
 
-/* When value is empty (placeholder), keep the select text color as light grey */
-select:invalid {
-  color: #b3aead;
+/* Extra large devices (desktops > 1200px) */
+@media (min-width: 1201px) {
+  .form-container {
+    max-width: 700px;
+  }
+  form label {
+    font-size: 17px;
+  }
 }
-
-/* For maximum compatibility, use a default value that's empty, required, and add the 'disabled' attribute to the placeholder option in your JSX: */

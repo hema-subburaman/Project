@@ -28,7 +28,7 @@ const Iconspage = () => {
 
   return (
     <div>
-    <h1> My Apps </h1><br></br>
+    <h1> 🌱GreenQuest </h1><br></br>
     <div className="iconspage-wrapper">
       <div className="apps-grid">
         {apps.map((app, index) => (
