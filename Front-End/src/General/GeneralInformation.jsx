@@ -109,7 +109,7 @@ const GeneralInformation = () => {
           />
         </div>
         <div className="question">
-          <label htmlFor="general">Do you intresting in gardening</label>
+          <label htmlFor="general">Are you interested in gardening</label>
           <select
             id="is_gardening"
             name="is_gardening"

@@ -59,7 +59,7 @@ const Loginpage = () => {
         <form onSubmit={handleLogin}>
           <input
             type="text"
-            placeholder="Username / Email"
+            placeholder="Email"
             className="input-box"
             value={usernameOrEmail}
             onChange={(e) => setUsernameOrEmail(e.target.value)}
